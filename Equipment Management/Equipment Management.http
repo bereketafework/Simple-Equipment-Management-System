@@ -1,0 +1,6 @@
+@Equipment_Management_HostAddress = http://localhost:5198
+
+GET {{Equipment_Management_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
