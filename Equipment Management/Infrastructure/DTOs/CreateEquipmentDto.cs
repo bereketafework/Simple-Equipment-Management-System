@@ -6,8 +6,8 @@ namespace Equipment_Management.Infrastructure.DTOs
     public class CreateEquipmentDto
     {
         public required string Name { get; set; }
-        [EnumDataType(typeof(EquipmentStatus), ErrorMessage = " Invalid Status Value")]
 
+        [EnumDataType(typeof(EquipmentStatus), ErrorMessage = " Invalid Status Value")]
         public EquipmentStatus Status { get; set; }
 
         //= EquipmentStatus.Active;

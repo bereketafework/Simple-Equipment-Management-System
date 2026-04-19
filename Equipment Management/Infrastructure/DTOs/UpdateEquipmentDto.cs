@@ -1,4 +1,5 @@
 ﻿using Equipment_Management.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace Equipment_Management.Infrastructure.DTOs
 {
@@ -6,6 +7,7 @@ namespace Equipment_Management.Infrastructure.DTOs
     {
         public required string Name { get; set; }
 
+        [EnumDataType(typeof(EquipmentStatus), ErrorMessage = " Invalid Status Value")]
         public EquipmentStatus Status { get; set; }
 
         //= EquipmentStatus.Active;

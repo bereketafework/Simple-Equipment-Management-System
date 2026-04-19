@@ -16,7 +16,7 @@ namespace Equipment_Management.Infrastructure
         }
 
 
-
+        // A Function That Fetch  an Equipments By Id
         public async Task<Equipment?> GetById(Guid id)
         {
             var equipment = await _context.Equipment.FindAsync(id);
@@ -25,13 +25,14 @@ namespace Equipment_Management.Infrastructure
 
         }
 
+        // A Function That Fetch Equipments
         public async Task<IEnumerable<Equipment>> GetAll()
         {
             var allequipment = await _context.Equipment.ToListAsync();
             return allequipment;
 
         }
-
+        // A Function That Create an Equipments
         public async Task<Equipment> Add(CreateEquipmentDto equipment)
         {
 
@@ -48,14 +49,11 @@ namespace Equipment_Management.Infrastructure
             return (NewEquipment);
 
         }
-
+        // A Function That Update an Equipments Data
         public async Task<Equipment> Update(Equipment equipment, Guid id)
         {
             var EquipmentFound = await _context.Equipment.FindAsync(id);
 
-            //if (EquipmentFound == null) {
-            //    Console.WriteLine("Not Found");
-            //    }
 
 
             EquipmentFound.Name = equipment.Name;
@@ -69,7 +67,7 @@ namespace Equipment_Management.Infrastructure
         }
 
 
-
+        // A Function That Delete an Equipments
         public async Task<Equipment> Delete(Guid id)
         {
             var equpment = await _context.Equipment.FindAsync(id);
