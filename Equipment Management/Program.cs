@@ -25,6 +25,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+// For Production Grade Configuration
+// Also In Production We Use a Cors Security Mechanisms
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//    app.UseHsts();
+//}
 
 app.UseHttpsRedirection();
 

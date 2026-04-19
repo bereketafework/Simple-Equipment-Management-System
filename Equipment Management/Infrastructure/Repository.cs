@@ -50,7 +50,7 @@ namespace Equipment_Management.Infrastructure
 
         }
         // A Function That Update an Equipments Data
-        public async Task<Equipment> Update(Equipment equipment, Guid id)
+        public async Task<Equipment> Update(UpdateEquipmentDto equipment, Guid id)
         {
             var EquipmentFound = await _context.Equipment.FindAsync(id);
 

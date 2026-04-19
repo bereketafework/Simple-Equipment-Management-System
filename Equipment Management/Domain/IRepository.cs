@@ -7,7 +7,7 @@ namespace Equipment_Management.Domain
         Task<Equipment?> GetById(Guid id);
         Task<IEnumerable<Equipment>> GetAll();
         Task<Equipment> Add(CreateEquipmentDto equipment);
-        Task<Equipment> Update(Equipment equipment, Guid id);
+        Task<Equipment> Update(UpdateEquipmentDto equipment, Guid id);
         Task <Equipment> Delete(Guid id);
     }
 }

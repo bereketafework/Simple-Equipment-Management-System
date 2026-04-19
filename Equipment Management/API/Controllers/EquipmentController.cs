@@ -49,7 +49,7 @@ namespace Equipment_Management.API.Controllers
         // an Endpoint that Used To Fetch Update equipments Data
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Equipment>> Update(Equipment equipment, IRepository repository, Guid id)
+        public async Task<ActionResult<Equipment>> Update(UpdateEquipmentDto equipment, IRepository repository, Guid id)
         {
             var findEquipment = await repository.GetById(id);
             if (findEquipment == null)
@@ -64,6 +64,7 @@ namespace Equipment_Management.API.Controllers
         }
         // an Endpoint that Used To Fetch Delete equipments
         [HttpDelete("{id}")]
+        
         public async Task<ActionResult<Equipment>> Delete(Guid id, IRepository repository)
         {
             var findEquip = await repository.GetById(id);
