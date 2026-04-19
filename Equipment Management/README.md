@@ -19,9 +19,11 @@ Small ASP.NET Core Web API for managing equipment records using PostgreSQL and E
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Port=5432;Database=EquipmentDB;Username=postgres;Password=admin"
+  "DefaultConnection": "Host=localhost;Port=5432;Database=EquipmentDB;Username=yourusername;Password=yourpassword"
 }
 ```
+
+Replace `yourusername` and `yourpassword` with your actual PostgreSQL credentials before running the application or applying migrations.
 
 - If you use an environment-specific settings file such as `appsettings.Development.json`, ensure it contains the `DefaultConnection` key or is not overriding it with an empty value.
 
@@ -50,16 +52,84 @@ dotnet run --project "Equipment Management"
 Open Swagger (if running in Development) at `https://localhost:{port}/swagger` or use the API endpoints described below.
 
 ## API Endpoints
-- `GET /api/equipment` - Get all equipment
-- `GET /api/equipment/{id}` - Get equipment by id
-- `POST /api/equipment` - Add equipment
-- `PUT /api/equipment/{id}` - Update equipment
-- `DELETE /api/equipment/{id}` - Delete equipment
 
-Example curl to get all:
+Base URL (development): `https://localhost:{port}/api/equipment`
+
+1) Get all equipment
+ - Method: `GET`
+ - URL: `/api/equipment`
+ - Success: `200 OK`
+ - Response: JSON array of equipment objects
+
+Example curl:
 
 ```bash
-curl https://localhost:5001/api/equipment
+curl -k https://localhost:5001/api/equipment
+```
+
+2) Get equipment by id
+ - Method: `GET`
+ - URL: `/api/equipment/{id}`
+ - Success: `200 OK` (returns equipment)
+ - Not found: `404 Not Found`
+
+Example curl:
+
+```bash
+curl -k https://localhost:5001/api/equipment/00000000-0000-0000-0000-000000000000
+```
+
+3) Create equipment
+ - Method: `POST`
+ - URL: `/api/equipment`
+ - Content-Type: `application/json`
+ - Request body (use `CreateEquipmentDto`):
+
+```json
+{
+  "name": "Laptop",
+  "status": "Active",
+  "serialNumber": "SN-12345",
+  "purchaseDate": "2025-01-15T00:00:00"
+}
+```
+
+ - Success: returns created equipment (usually `201 Created` or `200 OK`) with the saved object
+
+Example curl:
+
+```bash
+curl -k -X POST https://localhost:5001/api/equipment \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Laptop","status":"Active","serialNumber":"SN-12345","purchaseDate":"2025-01-15T00:00:00"}'
+```
+
+4) Update equipment
+ - Method: `PUT`
+ - URL: `/api/equipment/{id}`
+ - Content-Type: `application/json`
+ - Request body: full equipment object (same shape as domain `Equipment`)
+ - Success: `200 OK` with updated equipment
+ - Not found: `404 Not Found`
+
+Example curl:
+
+```bash
+curl -k -X PUT https://localhost:5001/api/equipment/00000000-0000-0000-0000-000000000000 \
+  -H "Content-Type: application/json" \
+  -d '{"id":"00000000-0000-0000-0000-000000000000","name":"Updated","status":"Maintenance","serialNumber":"SN-12345","purchaseDate":"2025-01-15T00:00:00"}'
+```
+
+5) Delete equipment
+ - Method: `DELETE`
+ - URL: `/api/equipment/{id}`
+ - Success: `200 OK` (or `204 No Content` in some implementations)
+ - Not found: `404 Not Found`
+
+Example curl:
+
+```bash
+curl -k -X DELETE https://localhost:5001/api/equipment/00000000-0000-0000-0000-000000000000
 ```
 
 ## Project Structure (important files)
