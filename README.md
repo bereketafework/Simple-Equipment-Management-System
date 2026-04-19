@@ -19,7 +19,7 @@ Small ASP.NET Core Web API for managing equipment records using PostgreSQL and E
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Port=5432;Database=EquipmentDB;Username=postgres;Password=admin"
+  "DefaultConnection": "Host=localhost;Port=5432;Database=EquipmentDB;Username=YourUsername;Password=Yourpasword"
 }
 ```
 
@@ -50,11 +50,11 @@ dotnet run --project "Equipment Management"
 Open Swagger (if running in Development) at `https://localhost:{port}/swagger` or use the API endpoints described below.
 
 ## API Endpoints
-- `GET /api/equipment` - Get all equipment
-- `GET /api/equipment/{id}` - Get equipment by id
-- `POST /api/equipment` - Add equipment
-- `PUT /api/equipment/{id}` - Update equipment
-- `DELETE /api/equipment/{id}` - Delete equipment
+- `GET /api/v1/equipment` - Get all equipment
+- `GET /api/v1/equipment/{id}` - Get equipment by id
+- `POST /api/v1/equipment` - Add equipment
+- `PUT /api/v1/equipment/{id}` - Update equipment
+- `DELETE /api/v1/equipment/{id}` - Delete equipment
 
 Example curl to get all:
 
